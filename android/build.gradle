@@ -7,7 +7,7 @@ buildscript {
         buildToolsVersion = findProperty('android.buildToolsVersion') ?: '31.0.0'
         minSdkVersion = Integer.parseInt(findProperty('android.minSdkVersion') ?: '21')
         compileSdkVersion = Integer.parseInt(findProperty('android.compileSdkVersion') ?: '31')
-        targetSdkVersion = Integer.parseInt(findProperty('android.targetSdkVersion') ?: '31')
+        targetSdkVersion = Integer.parseInt(findProperty('android.targetSdkVersion') ?: '30')
         if (findProperty('android.kotlinVersion')) {
             kotlinVersion = findProperty('android.kotlinVersion')
         }
@@ -40,10 +40,12 @@ allprojects {
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url(new File(['node', '--print', "require.resolve('react-native/package.json')"].execute(null, rootDir).text.trim(), '../android'))
+            // url '$rootDir/../node_modules/react-native-background-fetch/android/libs'
         }
         maven {
             // Android JSC is installed from npm
             url(new File(['node', '--print', "require.resolve('jsc-android/package.json')"].execute(null, rootDir).text.trim(), '../dist'))
+            // url '$rootDir/../node_modules/react-native-background-fetch/android/libs'
         }
 
         google()
